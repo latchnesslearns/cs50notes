@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
-int main (int argc, char *argv[])
+int main (void)
 {
     struct car
     {
@@ -14,10 +14,10 @@ int main (int argc, char *argv[])
 
     myCar.year = 2007;
 
-    printf("%d",myCar.year);
+    strcpy(myCar.model,"Toyota");
 
-
-
+    printf("%d\n",myCar.year);
+    printf("%s\n",myCar.model);
 
     return 0;
 }
