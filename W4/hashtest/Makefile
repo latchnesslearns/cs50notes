@@ -8,7 +8,7 @@ CFLAGS = -fsanitize=signed-integer-overflow -fsanitize=undefined -ggdb3 -O0 -Qun
 EXE = hashtest
 
 # space-separated list of header files
-HDRS = PMurHash.h
+HDRS = PMurHash.h sll.h
 
 # space-separated list of libraries, if any,
 # each of which should be prefixed with -l

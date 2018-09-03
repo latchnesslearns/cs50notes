@@ -109,6 +109,11 @@ sll1.c
     a. random access
     b. dynamic allocation
 - insertion/deletion and lookup can all tend towards constant time
+- hash tables work because the data itself tells us where we should look to find it
+- comprised of
+    1. hash function
+        a. returns non-negative integer
+    2. array (and later a linked list)
 
 ### Definition
 
