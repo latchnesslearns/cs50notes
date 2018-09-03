@@ -1,5 +1,4 @@
-// Test program for understanding of linked list and typdef
-
+// definitions for nodes and related functions
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,36 +16,6 @@ node* findData(node* firstNode, int data);
 node* addNode(node* firstNode, int data);
 
 void destroyNodes(node* firstNode);
-
-int main (int argc, char *argv[])
-{
-    if (argc != 4)
-    {
-        printf("Enter exactly 3 CLIs\n");
-        return 1;
-    }
-    // get data value from user
-    int firstVal = atoi(argv[1]);
-    int secondVal = atoi(argv[2]);
-
-    int searchVal = atoi(argv[3]);
-
-    // initalise first node
-    node* firstNode = makeNode(firstVal);
-
-    // add 2nd node (which will now be the first in the list)
-    firstNode = addNode(firstNode,secondVal);
-
-    // search for value
-    node* foundLocation = findData(firstNode,searchVal);
-
-    // print it for good measure
-    printf("firstNode.data: %d\n",firstNode->data);
-    printf("firstNode.next: 0x%x\n",(unsigned int) firstNode->next);
-    printf("foundLocation: 0x%x\n",(unsigned int) foundLocation);
-
-    return 0;
-}
 
 node* makeNode(int data)
 {

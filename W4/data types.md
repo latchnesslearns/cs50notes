@@ -102,3 +102,16 @@ sllNode;
 
 ### sample program
 sll1.c
+
+## Hash Tables
+
+- combines elements of linked lists and arrays
+    a. random access
+    b. dynamic allocation
+- insertion/deletion and lookup can all tend towards constant time
+
+### Definition
+
+```c
+
+```
