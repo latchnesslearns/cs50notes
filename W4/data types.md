@@ -63,15 +63,42 @@ typedef char* string;
 ```
 
 - structs can be typedef'ed to avoid having to always call them with struct
-  - first define the struct
-  - then typedef it
 
 ```c
-struct car
+typedef struct car
 {
     int year;
     char model[10];
 }
 
-typedef struct car my_car;
+typedef struct car car_t;
+// struct_t by convention to specify type
 ```
+
+## Singly Linked Lists
+
+### Definition
+
+- comprised of nodes, which themselves have two fields
+    1. Data
+    2. Pointer to node of same type as node
+
+```c
+typedef struct sllNodetemp
+// temporary name is required as definition is self referential
+{
+    int data;
+    struct sllNode* next;
+}
+sllNode;
+```
+
+- Useful things to do with linked lists;
+    1. Create one from scratch
+    2. Search one to find something
+    3. Insert new node
+    4. Delete single element
+    5. Delete entire list
+
+### sample program
+sll1.c
