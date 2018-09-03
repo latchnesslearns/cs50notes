@@ -52,3 +52,26 @@ myCar->year = 2011;
 ### Example Program
 
 structs1.c
+
+## Custom Types
+
+### Definition
+
+```c
+//typdef <old name> <new name>;
+typedef char* string;
+```
+
+- structs can be typedef'ed to avoid having to always call them with struct
+  - first define the struct
+  - then typedef it
+
+```c
+struct car
+{
+    int year;
+    char model[10];
+}
+
+typedef struct car my_car;
+```
