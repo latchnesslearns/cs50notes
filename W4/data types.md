@@ -80,14 +80,14 @@ typedef struct car car_t;
 ### Definition
 
 - comprised of nodes, which themselves have two fields
-    1. Data
+    1. word
     2. Pointer to node of same type as node
 
 ```c
 typedef struct sllNodetemp
 // temporary name is required as definition is self referential
 {
-    int data;
+    int word;
     struct sllNode* next;
 }
 sllNode;

@@ -2,21 +2,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "sll.h"
 
-typedef struct nodeTemp
-{
-    int data;
-    struct nodeTemp* next; 
-}
-node;
+// typedef struct nodeTemp
+// {
+//     char word[LENGTH];
+//     struct nodeTemp* next; 
+// }
+// node;
 
-node* makeNode(int data);
+// node* makeNode(int word);
 
-node* findData(node* firstNode, int data);
+// node* findword(node* firstNode, int word);
 
-node* addNode(node* firstNode, int data);
+// node* addNode(node* firstNode, int word);
 
-void destroyNodes(node* firstNode);
+// void destroyNodes(node* firstNode);
 
 int main (int argc, char *argv[])
 {
@@ -25,7 +26,7 @@ int main (int argc, char *argv[])
         printf("Enter exactly 3 CLIs\n");
         return 1;
     }
-    // get data value from user
+    // get word value from user
     int firstVal = atoi(argv[1]);
     int secondVal = atoi(argv[2]);
 
@@ -38,39 +39,39 @@ int main (int argc, char *argv[])
     firstNode = addNode(firstNode,secondVal);
 
     // search for value
-    node* foundLocation = findData(firstNode,searchVal);
+    node* foundLocation = findword(firstNode,searchVal);
 
     // print it for good measure
-    printf("firstNode.data: %d\n",firstNode->data);
+    printf("firstNode.word: %d\n",firstNode->word);
     printf("firstNode.next: 0x%x\n",(unsigned int) firstNode->next);
     printf("foundLocation: 0x%x\n",(unsigned int) foundLocation);
 
     return 0;
 }
 
-node* makeNode(int data)
+node* makeNode(int word)
 {
     node* thisNode = malloc(sizeof(node));
     if (thisNode == NULL)
     {
         fprintf(stderr,"Ran out of memory");
     }
-    thisNode->data = data;
+    thisNode->word = word;
     thisNode->next = NULL;
     return thisNode;
 }
 
-node* addNode(node* firstNode, int data)
+node* addNode(node* firstNode, int word)
 {
-    node* thisNode = makeNode(data);
+    node* thisNode = makeNode(word);
     thisNode->next = firstNode;
     return thisNode;
 }
 
-node* findData(node* firstNode, int data)
+node* findword(node* firstNode, int word)
 {
-    // check if data is in firstNode
-    if(firstNode->data == data)
+    // check if word is in firstNode
+    if(firstNode->word == word)
     {
         return firstNode;
     }
@@ -80,7 +81,7 @@ node* findData(node* firstNode, int data)
         return NULL;
     }
     // call recursively with next
-    return findData(firstNode->next, data);
+    return findword(firstNode->next, word);
 }
 
 void destroyNodes(node* firstNode)

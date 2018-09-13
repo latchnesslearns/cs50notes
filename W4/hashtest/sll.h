@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define LENGTH 45
+
 typedef struct nodeTemp
 {
-    int data;
+    char word[LENGTH];
     struct nodeTemp* next; 
 }
 node;
 
-node* makeNode(int data);
+node* makeNode(char word[LENGTH]);
 
-node* findData(node* firstNode, int data);
+node* findWord(node* firstNode, char word[LENGTH]);
 
-node* addNode(node* firstNode, int data);
+node* addNode(node* firstNode, char word[LENGTH]);
 
 void destroyNodes(node* firstNode);

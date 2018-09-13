@@ -1,45 +1,39 @@
 // definitions for nodes and related functions
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "sll.h"
 
-typedef struct nodeTemp
-{
-    int data;
-    struct nodeTemp* next; 
-}
-node;
-
-node* makeNode(int data);
-
-node* findData(node* firstNode, int data);
-
-node* addNode(node* firstNode, int data);
-
-void destroyNodes(node* firstNode);
-
-node* makeNode(int data)
+node* makeNode(char word[LENGTH])
 {
     node* thisNode = malloc(sizeof(node));
     if (thisNode == NULL)
     {
         fprintf(stderr,"Ran out of memory");
     }
-    thisNode->data = data;
+    // put string into word
+    strncpy(thisNode->word,word,sizeof(thisNode->word));
+
     thisNode->next = NULL;
     return thisNode;
 }
 
-node* addNode(node* firstNode, int data)
+node* addNode(node* firstNode, char word[LENGTH])
 {
-    node* thisNode = makeNode(data);
+    node* thisNode = makeNode(word);
     thisNode->next = firstNode;
     return thisNode;
 }
 
-node* findData(node* firstNode, int data)
-{
-    // check if data is in firstNode
-    if(firstNode->data == data)
+node* findWord(node* firstNode, char word[LENGTH])
+{   
+    // check if there's anything in this node
+    if(firstNode == NULL)
+    {
+        return NULL;
+    }
+    // check if word is in firstNode
+    if(firstNode->word == word)
     {
         return firstNode;
     }
@@ -49,7 +43,7 @@ node* findData(node* firstNode, int data)
         return NULL;
     }
     // call recursively with next
-    return findData(firstNode->next, data);
+    return findWord(firstNode->next, word);
 }
 
 void destroyNodes(node* firstNode)

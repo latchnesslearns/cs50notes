@@ -33,13 +33,13 @@ UINT Hash_Meiyan(const char *str, size_t wrdlen)
 // Murmur3 hash (32-bit), http://code.google.com/p/smhasher/
 UINT HashMurmur3(const char* key, size_t len)
 {
-	const UCHAR * data = (const UCHAR*)key;
+	const UCHAR * word = (const UCHAR*)key;
 	const int nblocks = len / 4;
 	UINT32 h1 = 1688943522; // a random seed
 	const UINT32 c1 = 0xcc9e2d51, c2 = 0x1b873593;
 
 	// body
-	const UINT32 * blocks = (const UINT32 *)(data + nblocks*4);
+	const UINT32 * blocks = (const UINT32 *)(word + nblocks*4);
 
 	for(int i = -nblocks; i; i++) {
 		UINT32 k1 = blocks[i];
@@ -54,7 +54,7 @@ UINT HashMurmur3(const char* key, size_t len)
 	}
 
 	// tail
-	const UINT8 * tail = (const UINT8*)(data + nblocks*4);
+	const UINT8 * tail = (const UINT8*)(word + nblocks*4);
 	UINT32 k1 = 0;
 
 	switch(len & 3)

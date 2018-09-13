@@ -1,6 +1,9 @@
 #include "PMurHash.h"
 #include "sll.h"
 #include <stdio.h>
+#include <string.h>
+
+node *hashtable[UINT32_MAX];
 
 int main(int argc, char *argv[])
 {
@@ -11,29 +14,44 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // initialise hashtable
-   node *hashtable[UINT32_MAX];
-
     // get input word
     char *word = argv[1];
-    printf("word: %s\n",word);
 
-    uint32_t wordhash = PMurHash32(0,word,sizeof(word));
-
-    printf("wordhash: 0x%x\n",wordhash);
+    // hash it
+    uint32_t wordhash = PMurHash32(0,word,strlen(word));
 
     // put word into hashtable
-    makeNode(hashtable[wordhash],atoi(word));
+    if(hashtable[wordhash] == NULL) // array at current hashpoint is empty
+    {
+        hashtable[wordhash] = makeNode(word);
+    }
+    else // array at current hashpoint already has something in it
+    {
+        addNode(hashtable[wordhash],word);
+    }
+
+    // print some debug stuff
+    printf("word: %s\t||\t",word);
+    printf("wordhash: 0x%x\t||\t",(unsigned int)wordhash);    
+    printf("word in hashtable: %s\n",hashtable[wordhash]->word);
 
     // get search word
     char *searchWord = argv[2];
-    uint32_t searchhash = PMurHash32(0,searchWord,sizeof(searchWord));
 
-    node *foundLocation = findData(hashtable[searchhash],atoi(searchWord));
+    // check what's in that array loc
+    
+    uint32_t searchHash = PMurHash32(0,searchWord,strlen(searchWord));
+
+    // print some debug stuff
+    printf("searchWord: %s\t||\t",searchWord);
+    printf("searchHash: 0x%x\t||",(unsigned int)searchHash);    
+    // printf("word in hashtable: %s\n",hashtable[wordhash]->word);
+
+    node *foundLocation = findWord(hashtable[searchHash],searchWord);
 
     if(foundLocation != NULL)
     {
-        printf("%x\n",(unsigned int)foundLocation->data);
+        printf("FOUND! 0x%x\t|| word at foundloc: %s\n",(unsigned int)&foundLocation,foundLocation->word);
     }
     else
     {
